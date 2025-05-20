@@ -52,9 +52,11 @@ class Oracle:
                 'question': user_input,
                 'context': """
                 
-                            'A Icomom é uma empresa que presta serviço na área de telecomunicações. Atualmente presta serviço para estas empresas: Vtal, Oi, Vivo.A Icomon possui sede em São Paulo na rua São Evaristo número 333, filial em Curitiba na Avenida Maringa, em Pinhais. '
-                            'A Icomon foi fundada em 2010, por um grupo de amigos que se conheceram na faculdade.Seus nomes são: João, Maria, José e Ana.'
-                            'A Icomon conta com mais de 100 colaboradores, sendo 50 deles na sede e 50 na filial.'
+                            'A Icomom é uma empresa que presta serviço na área de telecomunicações.'
+                            'A Icomon possui sede em São Paulo na rua São Evaristo número 333, filial em Curitiba na Avenida Maringa, em Pinhais. '
+                            'A Icomon conta com mais de 100 colaboradores, sendo 50 deles na sede em São Paulo e 50 na filial em Pinhais.'
+                            'presta serviços para estas empresas: Vtal, Oi, Vivo.'
+                            'A Icomon foi fundada em 2010.Os fundadadores da Icomon são: João, Maria, José e Ana.'
                             'A Icomon teve lucro de 33.000 milhões de reais no ano de 2022.'
                             'macro atividades são: INST-FTTH, MUD-FTTH,REP-FTTH, RET-FTTH.'
                             'estados: Atribúido, Concluído com sucesso,Concluído sem sucesso,Recebido.'
