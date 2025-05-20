@@ -3,7 +3,7 @@
 
 
 import streamlit as st
-from transformers import pipeline
+#from transformers import pipeline
 
 
 class Oracle:
@@ -45,7 +45,7 @@ class Oracle:
 
            
             model_name = "deepset/roberta-base-squad2"
-
+            from transformers import pipeline
             # a) Get predictions
             nlp = pipeline('question-answering', model=model_name, tokenizer=model_name)
             QA_input = {
@@ -56,9 +56,9 @@ class Oracle:
                             'A Icomon foi fundada em 2010, por um grupo de amigos que se conheceram na faculdade.Seus nomes são: João, Maria, José e Ana.'
                             'A Icomon conta com mais de 100 colaboradores, sendo 50 deles na sede e 50 na filial.'
                             'A Icomon teve lucro de 33.000 milhões de reais no ano de 2022.'
-                            'macro atividades são as seguintes: INST-FTTH, MUD-FTTH,REP-FTTH, RET-FTTH.'
-                            'A Icomom possui os seguintes estados no relatorio fsl: Atribúido, Concluído com sucesso,Concluído sem sucesso,Recebido.'
-                            'A Icomom possui os seguintes id companhia no relatorio fsl: TIM,LIGGA00084,SPEEDBOAT,PALLU,TEXNET,BWTELECOM00031,SOMA00041,FLIXFIBRA00019,Axxel,ASAP00018,CLAROWHS,LOVIZWH,	Oi,EQUATORIAL,WLANFIBRA00081	
+                            'macro atividades são: INST-FTTH, MUD-FTTH,REP-FTTH, RET-FTTH.'
+                            'estados: Atribúido, Concluído com sucesso,Concluído sem sucesso,Recebido.'
+                            'id companhia: TIM,LIGGA00084,SPEEDBOAT,PALLU,TEXNET,BWTELECOM00031,SOMA00041,FLIXFIBRA00019,Axxel,ASAP00018,CLAROWHS,LOVIZWH,	Oi,EQUATORIAL,WLANFIBRA00081	
 
                             
                             
