@@ -1,8 +1,6 @@
 
 #https://docs.haystack.deepset.ai/docs/huggingfacelocalgenerator
-import os
-import torch
-import sys
+
 
 import streamlit as st
 from transformers import pipeline
