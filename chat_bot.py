@@ -200,19 +200,28 @@ class Produtividade:
 
  
 def main():
-    path = 'C:\\Users\\55419\\Documents\\icomon\\spot\\thiago\\Handover - TH\\Handover - TH\\robos\\resultados_produtividade\\'
-    path_nelson = 'C:\\Users\\55419\\Documents\\icomon\\spot\\thiago\\Handover - TH\\Handover - TH\\robos\\resultados_produtividade\\nelson\\'
     
-    
-    
-    file_painel_geral_coord_campo = path+'painel_geral_Coordenador de campo.xlsx'
-    file_painel_geral_coord_area = path+'painel_geral_Coordenador de área.xlsx'
-    file_painel_geral_coord_tecnico = path+'painel_geral_nome_tecnico.xlsx'
-
-    file_top_bottom = path_nelson+'resultado_tecnico_campo.xlsx'
-    file_coordenador = path_nelson+'resultado_coordenador_campo.xlsx'
     
     executar = Produtividade()
+
+   
+    
+    #executar.treat_df_result_to_principal_painel(df=df_resultado)
+    
+    """  
+    path = 'C:\\Users\\55419\\Documents\\icomon\\spot\\thiago\\Handover - TH\\Handover - TH\\robos\\resultados_produtividade\\'
+        path_nelson = 'C:\\Users\\55419\\Documents\\icomon\\spot\\thiago\\Handover - TH\\Handover - TH\\robos\\resultados_produtividade\\nelson\\'
+        
+        
+        
+        file_painel_geral_coord_campo = path+'painel_geral_Coordenador de campo.xlsx'
+        file_painel_geral_coord_area = path+'painel_geral_Coordenador de área.xlsx'
+        file_painel_geral_coord_tecnico = path+'painel_geral_nome_tecnico.xlsx'
+
+        file_top_bottom = path_nelson+'resultado_tecnico_campo.xlsx'
+        file_coordenador = path_nelson+'resultado_coordenador_campo.xlsx'
+
+
 
     df_top_bottom = executar.read_files(file=file_top_bottom)
     df_coordenador = executar.read_files(file=file_coordenador)
@@ -220,11 +229,6 @@ def main():
     df_resultado_coord_campo = executar.read_files(file=file_painel_geral_coord_campo)
     df_resultado_coord_area = executar.read_files(file=file_painel_geral_coord_area)
     df_resultado_tecnico = executar.read_files(file=file_painel_geral_coord_tecnico)
-    
-    #executar.treat_df_result_to_principal_painel(df=df_resultado)
-    
-    """  
-    
      executar.produtividade(
         df_coordenador=df_coordenador,
         df_top_bottom=df_top_bottom,
