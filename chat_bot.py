@@ -58,9 +58,9 @@ class Oracle:
                             'A Icomon foi fundada em 2010, por um grupo de amigos que se conheceram na faculdade.Seus nomes são: João, Maria, José e Ana.'
                             'A Icomon conta com mais de 100 colaboradores, sendo 50 deles na sede e 50 na filial.'
                             'A Icomon teve lucro de 33.000 milhões de reais no ano de 2022.'
-                            'O relatório fsl possui os seguintes 4 tipos de macro atividades: INST-FTTH, MUD-FTTH,REP-FTTH, RET-FTTH.'
-                            'O relatorio fsl possui os seguintes 4 tipos de estados: Atribúido, Concluído com sucesso,Concluído sem sucesso,Recebido.'
-                            'O relatório fsl possui os seguintes 15 tipos de id companhia são eles: TIM,LIGGA00084,SPEEDBOAT,PALLU,TEXNET,BWTELECOM00031,SOMA00041,FLIXFIBRA00019,Axxel,ASAP00018,CLAROWHS,LOVIZWH,	Oi,EQUATORIAL,WLANFIBRA00081	
+                            'macro atividades são as seguintes: INST-FTTH, MUD-FTTH,REP-FTTH, RET-FTTH.'
+                            'A Icomom possui os seguintes estados no relatorio fsl: Atribúido, Concluído com sucesso,Concluído sem sucesso,Recebido.'
+                            'A Icomom possui os seguintes id companhia no relatorio fsl: TIM,LIGGA00084,SPEEDBOAT,PALLU,TEXNET,BWTELECOM00031,SOMA00041,FLIXFIBRA00019,Axxel,ASAP00018,CLAROWHS,LOVIZWH,	Oi,EQUATORIAL,WLANFIBRA00081	
 
                             
                             
