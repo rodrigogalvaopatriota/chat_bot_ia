@@ -1,39 +1,26 @@
-A Icomon é uma empresa que presta serviço na área de telecomunicações.
-ela presta serviços para estas empresas: Vtal, Oi, Vivo.
-Foi fundada em 2010.
-Foi fundada por Elias Bragneto, André Aranha, Pedro Anizio.
-Possui sede na cidade de São Paulo.
-
-
 Alex Sandro é o nome do melhor supervisor no indicador de cumprimento agendamento instalação.
 Alex Sandro teve o resultado de 96,851% no indicador de cumprimento agendamento instalação.
 Claudinei Batista Braz é o nome do pior supervisor no indicador de cumprimento agendamento instalação.
 Claudinei Batista Braz teve o resultado de 93,660% no indicador de cumprimento agendamento instalação.
-
-
 Alex Sandro é o nome do melhor supervisor no indicador de cumprimento agendamento reparo.
 Alex Sandro teve o resultado de 94,696% no indicador de cumprimento agendamento reparo. 
 Claudinei Batista Braz é o nome do pior supervisor no indicador de cumprimento agendamento reparo.
-Claudinei Batista Braz teve o resultado de 89,614%% no indicador de cumprimento agendamento reparo.
-
-
+Claudinei Batista Braz teve o resultado de 89,614% no indicador de cumprimento agendamento reparo.
 Dhiego Freitas é o nome do melhor supervisor no indicador de repetida.
 Dhiego Freitas teve o resultado de 6,736% no indicador de repetida.
 Claudinei Batista Braz é o nome do pior supervisor no indicador de repetida.
 Claudinei Batista Braz teve o resultado de 7,484% no indicador de repetida.
 
+Claudinei Batista Braz é nome do melhor supervisor no indicador de garantia.
+Segue o resultado do Claudinei Batista Braz no indicador de garantia:2,671% 
 
-Claudinei Batista Braz é nome do melhor supervisor no indicador de garantia. Claudinei Batista Braz tem o resultado de 2,671%
-Dhiego de Freitas é o pior supervisor no indicador de garantia. Dhiego de Freitas tem o resultado de 3,976%
-
-Alex Sandro é o nome do melhor supervisor no indicador raparo no prazo. Alex Sandro tem o resultado de 98,754%
-Dhiego de Freitas é o nome do pior supervisor no indicador reparo no prazo. Dhiego de Freitas tem o resultado de 96,835%.
+Dhiego de Freitas é o pior supervisor no indicador de garantia.
+no indicador garantia Dhiego de Freitas teve o resultado de 3,976%
 
 
-O supervisor melhor no indicador de eficácia instalação é Claudinei Batista Braz com 86,985%
-O supervisor ofensor no indicador de eficácia instalação é Dhiego de Freitas com 78,691%
-O supervisor melhor no indicador de eficácia reparo é Claudinei Batista Braz com 85,785%
-O supervisor ofensor no indicador de eficácia reparo é Alex Sandro com 78,894%
+
+A icomon foi fundada no ano de 2010 na cidade de São Paulo.
+
 
 
 
