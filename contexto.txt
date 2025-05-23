@@ -1,50 +1,26 @@
 A Icomon é uma empresa que presta serviço na área de telecomunicações.
 ela presta serviços para estas empresas: Vtal, Oi, Vivo.
-A icomon possui estes indicadores: agendamento,garantia.
 Foi fundada em 2010.
 Foi fundada por Elias Bragneto, André Aranha, Pedro Anizio, Marcelo Xives.
 Possui sede na cidade de São Paulo.
-Possui filiais nestes estados: Paraná, Rio de Janeiro, Rio Grande do Sul, Santa Catarina, Maranhão, Piauí.
-A lucatividade no ano de 2022 foi de 10%, possibilitando um crescimento de 5% em relação ao ano de 2021.
-Com isso, a icomon se tornou uma das maiores empresas de telecomunicações do Brasil. Estamos projetando uma contratação de 150 colaboradores para o estado do Paraná.
 No mês de janeiro tivemos o resultado de 91% de cumprimento de agendamento de instalação.
 No mês de fevereiro tivemos o resultado de 92% de cumprimento de agendamento de instalação.
 No mês de março tivemos o resultado de 93% de cumprimento de agendamento de instalação.
 No mês de abril tivemos o resultado de 94% de cumprimento de agendamento de instalação.
 No mes de maio tivemos o resultado de 95% de cumprimento de agendamento de instalação.
 Houve uma grande queda histórica na produvividade, aproximadamente 15% no mês de janeiro do 
-ano de 2019, devido ao caos econômico.
-
-O caos instaurado no governo do presidente Lula em 2000 ocasionou desemprego em massa, causando caos econômico. Enquanto isso ocorria guerra comercial entre os países Estados Unidos e China, esta última a economia está crescendo 25% no mês de maio do ano de 2025, enquanto o Estados Unidos está crescendo a economia cerca de 12% no mesmo período.
-O Brasil cresceu 15% no ano de 2025.
-Dinamarca e Holanda estão entre os países mais desenvolvidos do mundo.
-A população na Holanda ganha em média 4 mil euros.
-A população na Dinamarca ganha em média 5 mil euros.
-A Icomon lucrou dois mil reais no ano de 2000
-A Icomon lucrou dois mil e um reais no ano de 2001
-A Icomon lucrou dois mil e dois reais no ano de 2002
-A Icomon lucrou dois mil e tres reais no ano de 2003
-A Icomon lucrou dois mil e quatro reais no ano de 2004
-A Icomon lucrou dois mil e cinto reais no ano de 2005
-
 O supervisor melhor no indicador de cumprimento agendamento instalação é Alex Sandro com 96,851%
 O supervisor ofensor no indicador de cumprimento agendamento instalação é Claudinei Batista Braz com 93,660%
-
 O supervisor melhor no indicador de cumprimento agendamento reparo é Alex Sandro com 94,696%
 O supervisor ofensor no indicador de cumprimento agendamento reparo é Claudinei Batista Braz com 89,614%
-
 O supervisor melhor no indicador de repetida é Dhiego Freitas com 6,736%
 O supervisor ofensor no indicador de repetida é Claudinei Batista Braz com 7,484%
-
 O supervisor melhor no indicador de garantia é Claudinei Batista Braz com 2,671%
 O supervisor ofensor no indicador de garantia é Dhiego de Freitas com 3,976%
-
 O supervisor melhor no indicador de reparo no prazo é Alex Sandro com 98,754%
 O supervisor ofensor no indicador de reparo no prazo é Dhiego de Freitas com 96,835%
-
 O supervisor melhor no indicador de eficácia instalação é Claudinei Batista Braz com 86,985%
 O supervisor ofensor no indicador de eficácia instalação é Dhiego de Freitas com 78,691%
-
 O supervisor melhor no indicador de eficácia reparo é Claudinei Batista Braz com 85,785%
 O supervisor ofensor no indicador de eficácia reparo é Alex Sandro com 78,894%
 
