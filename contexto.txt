@@ -1,24 +1,35 @@
 A Icomon é uma empresa que presta serviço na área de telecomunicações.
 ela presta serviços para estas empresas: Vtal, Oi, Vivo.
 Foi fundada em 2010.
-Foi fundada por Elias Bragneto, André Aranha, Pedro Anizio, Marcelo Xives.
+Foi fundada por Elias Bragneto, André Aranha, Pedro Anizio.
 Possui sede na cidade de São Paulo.
-No mês de janeiro tivemos o resultado de 91% de cumprimento de agendamento de instalação.
-No mês de fevereiro tivemos o resultado de 92% de cumprimento de agendamento de instalação.
-No mês de março tivemos o resultado de 93% de cumprimento de agendamento de instalação.
-No mês de abril tivemos o resultado de 94% de cumprimento de agendamento de instalação.
-No mes de maio tivemos o resultado de 95% de cumprimento de agendamento de instalação.
-Houve uma grande queda histórica na produvividade, aproximadamente 15% no mês de janeiro do 
-O supervisor melhor no indicador de cumprimento agendamento instalação é Alex Sandro com 96,851%
-O supervisor ofensor no indicador de cumprimento agendamento instalação é Claudinei Batista Braz com 93,660%
-O supervisor melhor no indicador de cumprimento agendamento reparo é Alex Sandro com 94,696%
-O supervisor ofensor no indicador de cumprimento agendamento reparo é Claudinei Batista Braz com 89,614%
-O supervisor melhor no indicador de repetida é Dhiego Freitas com 6,736%
-O supervisor ofensor no indicador de repetida é Claudinei Batista Braz com 7,484%
-O supervisor melhor no indicador de garantia é Claudinei Batista Braz com 2,671%
-O supervisor ofensor no indicador de garantia é Dhiego de Freitas com 3,976%
-O supervisor melhor no indicador de reparo no prazo é Alex Sandro com 98,754%
-O supervisor ofensor no indicador de reparo no prazo é Dhiego de Freitas com 96,835%
+
+
+Alex Sandro é o nome do melhor supervisor no indicador de cumprimento agendamento instalação.
+Alex Sandro teve o resultado de 96,851% no indicador de cumprimento agendamento instalação.
+Claudinei Batista Braz é o nome do pior supervisor no indicador de cumprimento agendamento instalação.
+Claudinei Batista Braz teve o resultado de 93,660% no indicador de cumprimento agendamento instalação.
+
+
+Alex Sandro é o nome do melhor supervisor no indicador de cumprimento agendamento reparo.
+Alex Sandro teve o resultado de 94,696% no indicador de cumprimento agendamento reparo. 
+Claudinei Batista Braz é o nome do pior supervisor no indicador de cumprimento agendamento reparo.
+Claudinei Batista Braz teve o resultado de 89,614%% no indicador de cumprimento agendamento reparo.
+
+
+Dhiego Freitas é o nome do melhor supervisor no indicador de repetida.
+Dhiego Freitas teve o resultado de 6,736% no indicador de repetida.
+Claudinei Batista Braz é o nome do pior supervisor no indicador de repetida.
+Claudinei Batista Braz teve o resultado de 7,484% no indicador de repetida.
+
+
+Claudinei Batista Braz é nome do melhor supervisor no indicador de garantia. Claudinei Batista Braz tem o resultado de 2,671%
+Dhiego de Freitas é o pior supervisor no indicador de garantia. Dhiego de Freitas tem o resultado de 3,976%
+
+Alex Sandro é o nome do melhor supervisor no indicador raparo no prazo. Alex Sandro tem o resultado de 98,754%
+Dhiego de Freitas é o nome do pior supervisor no indicador reparo no prazo. Dhiego de Freitas tem o resultado de 96,835%.
+
+
 O supervisor melhor no indicador de eficácia instalação é Claudinei Batista Braz com 86,985%
 O supervisor ofensor no indicador de eficácia instalação é Dhiego de Freitas com 78,691%
 O supervisor melhor no indicador de eficácia reparo é Claudinei Batista Braz com 85,785%
