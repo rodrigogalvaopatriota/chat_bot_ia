@@ -136,7 +136,7 @@ class Oracle:
         
         }
         resposta_bot = nlp(QA_input)
-        return resposta_bot
+        return resposta_bot['answer']
 
     
     def load_model_roberta_base(self,user_input):
