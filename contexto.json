@@ -1,0 +1,35 @@
+[
+  
+
+  
+
+  {
+    "assunto":"informações sobre a empresa Icomon", 
+    "nome_empresa": "Icomon",
+    "sigla_empresa": "ICM",
+    "data_fundacao": "2010-01-01",
+    "cidade_fundacao": "São Paulo",
+    "estado_fundacao": "SP",
+    "pais_fundacao": "Brasil",
+    "setor_atuação": "Telecomunicações",
+    "lucro_liquido": 5000000,
+    "numero_funcionarios": 2000,
+    "faturamento_anual": 20000000,
+    "setor": "Tecnologia",
+    "garantia":"3,976%",
+    "repetida":"7,484%",
+    "cumprimento instalação":"93,660%",
+    "cumprimento reparo":"89,614%",
+    "reparo no prazo":"96,835%",
+    "eficacia instalação":"78,691%",
+    "eficacia reparo":"78,894%"
+   
+
+}
+
+
+
+
+
+  
+]
