@@ -17,7 +17,7 @@ class Oracle:
     
     
     def contexto(self):
-        with open('contexto.txt', 'r') as file:
+        with open('contexto.json', 'r') as file:
             contexto_file = file.read()
             
         #from transformers import AutoTokenizer
