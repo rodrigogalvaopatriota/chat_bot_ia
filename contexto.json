@@ -16,6 +16,11 @@
     "numero_funcionarios": 2000,
     "faturamento_anual": 20000000,
     "setor": "Tecnologia",
+    "qual o endereço da icomon em Pinhais":"Avenida Maringá, 1234, Pinhais, PR, Brasil",
+    "gerente operecional em Pinhais":"Vladimir Fortunato",
+    "gerente geral":"Fabio",
+    "gerente de manutenção":"Everton Favorin",
+    "telefone everton favorin":"(41) 99999-9999",
     "garantia":"3,976%",
     "repetida":"7,484%",
     "cumprimento instalação":"93,660%",
@@ -23,6 +28,8 @@
     "reparo no prazo":"96,835%",
     "eficacia instalação":"78,691%",
     "eficacia reparo":"78,894%"
+   
+
    
 
 }
