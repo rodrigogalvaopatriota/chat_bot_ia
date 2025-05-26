@@ -5,6 +5,16 @@
 
   {
     "assunto":"informações sobre a empresa Icomon", 
+    "resultado garantia":"3,976%",
+    "resultado repetida":"7,484%",
+    "resultado cumprimento instalação":"93,660%",
+    "resultado cumprimento reparo":"89,614%",
+    "resultado reparo no prazo":"96,835%",
+    "resultado eficacia instalação":"78,691%",
+    "resultado eficacia reparo":"78,894%",
+    "produtividade de claudinei":"5,722",
+    "produtividade de alex sandro":"5,392",
+    "produtividade de dhiego":"4,891",
     "nome_empresa": "Icomon",
     "sigla_empresa": "ICM",
     "A icomon foi fundada em": "2010-01-01",
@@ -21,17 +31,8 @@
     "telefone fabio tadeu engel":"(41) 99999-8888",
     "nome gerente de manutenção":"Everton da Silva Favorin",
     "email everton da silva favorin":"esfavorin@icomontecnologia.com.br",
-    "telefone everton da silva favorin":"(41) 99999-9999",
-    "resultado garantia":"3,976%",
-    "resultado repetida":"7,484%",
-    "resultado cumprimento instalação":"93,660%",
-    "resultado cumprimento reparo":"89,614%",
-    "resultado reparo no prazo":"96,835%",
-    "resultado eficacia instalação":"78,691%",
-    "resultado eficacia reparo":"78,894%",
-    "produtividade de claudinei":"5,722",
-    "produtividade de alex sandro":"5,392",
-    "produtividade de dhiego":"4,891"
+    "telefone everton da silva favorin":"(41) 99999-9999"
+    
    
 
    
