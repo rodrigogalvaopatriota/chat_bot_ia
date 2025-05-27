@@ -2,5 +2,4 @@ transformers
 torch
 streamlit
 pandas
-subprocess
 
