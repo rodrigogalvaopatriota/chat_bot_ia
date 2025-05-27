@@ -17,7 +17,7 @@ class Oracle:
     
     
     def contexto(self):
-        with open('contexto.xlsx', 'r') as file:
+        with open('contexto.json', 'r') as file:
             contexto_file = file.read()
             
        
