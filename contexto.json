@@ -1,32 +1,8 @@
-[
-  
-
-  
-
-  {
-    "assunto":"informações sobre a empresa Icomon", 
-    "resultado garantia":"3,976%",
-    "resultado repetida":"7,484%",
-    "resultado cumprimento instalação":"93,660%",
-    "resultado cumprimento reparo":"89,614%",
-    "resultado reparo no prazo":"96,835%",
-    "resultado eficacia instalação":"78,691%",
-    "resultado eficacia reparo":"78,894%",
-    "produtividade de ELISSON MIGUEL GARCIA":"5,9976",
-    "produtividade de CARLOS ALBERTO BASILIO JUNIOR":"5,6263",
-    "produtividade de CLEMILSON SZNICER SOBRAL":"5,2701",
-    "produtividade de HEIDER DOS SANTOS NUNES":",5,2509",
-    "produtividade de EDUARDO FERREIRA LOURENCO":"5,0893",
-    "produtividade de TONY CRISTIAN DA SILVA JANDRE":"4.8864"
-
-    
-    
-
+{
+    "produtividade elisson":"5.9976",
+    "produtividade de basilio":"5.6263",
+    "produtividade clemilson":"5.2701",
+    "produtividade de heider":"5.2509",
+    "produtividade eduardo":"5.0893",
+    "produtividade tony":"4.8864"
 }
-
-
-
-
-
-  
-]
