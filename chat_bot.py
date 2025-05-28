@@ -54,7 +54,7 @@ class Oracle:
         if 'cumprimento agendamento insta' in user_input:
             with open('contextos//contexto_cumprimento_agendamento_instalacao.json', 'r') as file:
                 contexto_file = file.read()
-         if 'cumprimento agendamento repa' in user_input:
+        if 'cumprimento agendamento repa' in user_input:
             with open('contextos//contexto_cumprimento_agendamento_instalacao.json', 'r') as file:
                 contexto_file = file.read()
     
