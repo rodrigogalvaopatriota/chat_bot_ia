@@ -1,9 +1,9 @@
-produtividade elisson é a mais alta com 5.9617.
-produtividade de basilio é 5.7569.
-produtividade clemilson é 5.4151.
-produtividade de heider é 5.3818.
-produtividade Eduardo é 5.1897.
-produtividade tony é a mais baixa com 5.07.
+a produtividade mais alta é do elisson com 5.9617 pontos.
+produtividade de basilio é 5.7569 pontos.
+produtividade clemilson é 5.4151 pontos.
+produtividade de heider é 5.3818 pontos.
+produtividade Eduardo é 5.1897 pontos.
+a produtividade mais baixa é do tony com 5.07 pontos.
 
 
  
