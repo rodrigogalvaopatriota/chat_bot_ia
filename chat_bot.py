@@ -92,7 +92,7 @@ class Oracle:
                 #use_container_width=False,
             
             )
-        st.write("Olá, sou um assistente virtual. Como posso ajudar você hoje?")
+        st.write("Olá, sou um assistente virtual dos indicadores: Produtividade, repetido, garantia.Possuo também telefones e emails de colaboradores. Como posso ajudar você hoje?")
         user_input = st.text_input("Digite sua pergunta:")
         #if 'produtividade' in user_input:
 
