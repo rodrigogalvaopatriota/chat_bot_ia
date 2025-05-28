@@ -60,6 +60,9 @@ class Oracle:
         if 'eficacia rep' in user_input:
             with open('contextos//contexto_eficacia_reparo.json', 'r') as file:
                 contexto_file = file.read()
+        if 'eficacia inst' in user_input:
+            with open('contextos//contexto_eficacia_instalacao.json', 'r') as file:
+                contexto_file = file.read()
     
             
  
