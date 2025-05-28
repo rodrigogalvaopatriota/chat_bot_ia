@@ -48,6 +48,9 @@ class Oracle:
         if 'endereço' in user_input and 'sa' in user_input:
             with open('contextos//contexto_sa_endereco.json', 'r') as file:
                 contexto_file = file.read()
+        if 'email' in user_input:
+            with open('contextos//contexto_email.json', 'r') as file:
+                contexto_file = file.read()
  
      
         return contexto_file
