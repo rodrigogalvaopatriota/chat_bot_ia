@@ -1,9 +1,8 @@
 {
-    "eficacia reparo do elisson":"6.0041",
-    "eficacia reparo do basilio":"5.6794",
-    "eficacia reparo do heider":"5.3265",
-    "eficacia reparo do clemilson":"5.2923",
-    "eficacia reparo do eduardo":"5.1295",
-    "eficacia reparo do tony":"4.9136",
-    "":null
+    "eficacia reparo de basilio":"83.38%",
+    "eficacia reparo de clemilson":"91.02%",
+    "eficacia reparo de eduardo":"82.41000000000001%",
+    "eficacia reparo de elisson":"84.1%",
+    "eficacia reparo de heider":"74.39%",
+    "eficacia reparo de tony":"78.96%"
 }
