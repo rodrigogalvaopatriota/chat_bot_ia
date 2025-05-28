@@ -42,6 +42,9 @@ class Oracle:
         if 'cumprimento reparo' in user_input:
             with open('contextos//contexto_cumprimento_reparo.json', 'r') as file:
                 contexto_file = file.read()
+        if 'telefone' in user_input:
+            with open('contextos//contexto_telefone.json', 'r') as file:
+                contexto_file = file.read()
  
      
         return contexto_file
