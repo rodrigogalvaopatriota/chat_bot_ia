@@ -22,7 +22,7 @@ class Oracle:
     def contexto(self,user_input):
         #self.update_produtividade_context()
         if 'produtividade' in user_input:
-            with open('contextos//contexto_produtividade.json', 'r') as file:
+            with open('contextos//contexto_produtividade.txt', 'r') as file:
                 contexto_file = file.read()
         if 'garantia' in user_input:
             with open('contextos//contexto_garantia.json', 'r') as file:
