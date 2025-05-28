@@ -51,6 +51,14 @@ class Oracle:
         if 'email' in user_input:
             with open('contextos//contexto_email.json', 'r') as file:
                 contexto_file = file.read()
+        if 'cumprimento agendamento insta' in user_input:
+            with open('contextos//contexto_cumprimento_agendamento_instalacao.json', 'r') as file:
+                contexto_file = file.read()
+         if 'cumprimento agendamento repa' in user_input:
+            with open('contextos//contexto_cumprimento_agendamento_instalacao.json', 'r') as file:
+                contexto_file = file.read()
+    
+            
  
      
         return contexto_file
