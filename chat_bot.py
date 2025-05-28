@@ -45,7 +45,7 @@ class Oracle:
         if 'telefone' in user_input:
             with open('contextos//contexto_telefone.json', 'r') as file:
                 contexto_file = file.read()
-        if 'endereço' in user_input and if 'sa' in user_input:
+        if 'endereço' in user_input and 'sa' in user_input:
             with open('contextos//contexto_sa_endereco.json', 'r') as file:
                 contexto_file = file.read()
  
