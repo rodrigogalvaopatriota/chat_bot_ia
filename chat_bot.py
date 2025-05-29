@@ -110,7 +110,7 @@ class Oracle:
             
             )
         st.write("Olá, sou assistente virtual,possuo respostas para estes indicadores:")
-        st.write("Produtividade, repetido, garantia, cumprimento de agendamentos:instalação e reparo,eficácias: instação e reparo.")
+        st.write("Produtividade, repetido, garantia.Cumprimentos de agendamentos: instalação e reparo.Eficácias: instalação e reparo.")
         st.write("Por enquanto respondo perguntas simples com respostas curtas, logo vou aprender a fazzer analises e fornecer repostas complexas. Como posso ajudar você hoje?")
                           
         
