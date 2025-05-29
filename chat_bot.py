@@ -109,7 +109,7 @@ class Oracle:
                 #use_container_width=False,
             
             )
-        st.write("Olá, sou assistente virtual,possuo respostas para estes indicadores:")
+        st.write("Olá, sou assistente virtual de indicadores Icomon, possuo respostas para estes indicadores:")
         st.write("Produtividade, repetido, garantia.Cumprimentos de agendamentos: instalação e reparo.Eficácias: instalação e reparo.")
         st.write("Por enquanto respondo perguntas simples com respostas curtas, logo vou aprender a fazzer analises e fornecer repostas complexas. Como posso ajudar você hoje?")
                           
