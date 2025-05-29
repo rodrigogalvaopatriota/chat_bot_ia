@@ -111,7 +111,12 @@ class Oracle:
             )
         st.write("Olá, sou assistente virtual de indicadores Icomon, possuo respostas para estes indicadores:")
         st.write("Produtividade, repetido, garantia.Cumprimentos de agendamentos: instalação e reparo.Eficácias: instalação e reparo.")
+        st.write("Meu conhecimento ainda está restrito aos coordenadores de campo do estado do Paraná.")
         st.write("Por enquanto respondo perguntas simples com respostas curtas, logo vou aprender a fazzer analises e fornecer repostas complexas. Como posso ajudar você hoje?")
+        st.write("Aqui vão algumas dicas de perguntas:")
+        st.write("Qual foi o resultado do indicador garantia do elisson?")
+        st.write("Qual o resultado da garantia do elisson?")
+        st.write("Qual o resultado da garantia do supervisor elisson?")
                           
         
         
