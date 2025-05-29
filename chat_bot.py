@@ -110,13 +110,13 @@ class Oracle:
             
             )
         st.write("Olá, sou assistente virtual,por enquanto possuo somente os dados dos coordenadores de campo do PR.Por enquanto respondo perguntas simples com respostas curtas, logo vou aprender a fazzer analises e fornecer repostas complexas. Como posso ajudar você hoje?")
-        st.write("1.Produtividade.)
-        st.write("1.Repedido.)
-        st.write("1.Garantia.)
-        st.write("1.Cumprimento agendamento instalação.)
-        st.write("1.Cumprimento agendamento reparo.)
-        st.write("1.Eficácia instalação.)
-        st.write("1.Eficácia reparo.)
+        st.write("1.Produtividade.")
+        st.write("2.Repedido.")
+        st.write("3.Garantia.")
+        st.write("4.Cumprimento agendamento instalação.")
+        st.write("5.Cumprimento agendamento reparo.")
+        st.write("6.Eficácia instalação.")
+        st.write("7.Eficácia reparo.")
                           
         
         
