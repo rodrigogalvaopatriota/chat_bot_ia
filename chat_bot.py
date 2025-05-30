@@ -154,9 +154,9 @@ class Oracle:
 
            
             choose_context = self.contexto(user_input)
-            #resposta_bot = self.load_model_roberta_large(user_input=user_input,context=choose_context)
-            resposta_bot = self.load_model_llama3(user_input=user_input,context=choose_context)
-            #resposta_bot = self.load_model_ollama_3(user_input)
+            resposta_bot = self.load_model_roberta_large(user_input=user_input,context=choose_context)
+            #resposta_bot = self.load_model_llama3(user_input=user_input,context=choose_context)
+           
 
 
             # Armazena no histórico
