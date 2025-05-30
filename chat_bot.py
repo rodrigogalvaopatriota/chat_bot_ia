@@ -7,6 +7,7 @@ from transformers import pipeline
 import os
 import pandas as pd
 import json
+import torch
 
 
 class Oracle:
@@ -70,7 +71,7 @@ class Oracle:
         return contexto_file
     
     def load_model_llama3(self,user_input,context):
-
+        
         model_path = 'meta-llama/Meta-Llama-3-8B-Instruct'
         pipe = pipeline("text-generation", model=model_path, torch_dtype=torch.bfloat16, device_map="auto")
 
