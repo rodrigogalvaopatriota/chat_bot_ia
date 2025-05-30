@@ -69,7 +69,24 @@ class Oracle:
      
         return contexto_file
     
-    
+    def load_model_llama3(self,user_input,context):
+
+        model_path = 'meta-llama/Meta-Llama-3-8B-Instruct'
+        pipe = pipeline("text-generation", model=model_path, torch_dtype=torch.bfloat16, device_map="auto")
+
+        question = user_input
+        messages = [
+            {
+                "role": "system",
+                "content": f"Você é um especialista em analise de indicadores. Considere o seguinte contexto:\n{context}",
+            },
+            {"role": "user", "content": f"{question}"},
+        ]
+        prompt = pipe.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        outputs = pipe(prompt, max_new_tokens=2048, do_sample=True, temperature=0.6, top_k=50, top_p=0.95)
+        #print(outputs[0]["generated_text"])
+        resultado = str(outputs[0]["generated_text"]).split('assistant<|end_header_id|>')[1]
+        return resultado
    
 
     def load_model_roberta_large(self,user_input,context):
@@ -134,9 +151,10 @@ class Oracle:
 
            
 
-            #resposta_bot = self.load_model_roberta(user_input)
+           
             choose_context = self.contexto(user_input)
-            resposta_bot = self.load_model_roberta_large(user_input=user_input,context=choose_context)
+            #resposta_bot = self.load_model_roberta_large(user_input=user_input,context=choose_context)
+            resposta_bot = self.load_model_llama3(user_input=user_input,context=choose_context)
             #resposta_bot = self.load_model_ollama_3(user_input)
 
 
