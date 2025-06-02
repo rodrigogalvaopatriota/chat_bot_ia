@@ -90,6 +90,10 @@ class Oracle:
         for index,row in df_context_produtividade.iterrows():
             #context+= f'{str(row["Supervisor"])} têm o resultado de: {str(row["produtividade_x"])}'
             #df_context_produtividade.at[index, 'context'] = f'{str(row["Supervisor"])} têm o resultado de {str(round(row["produtividade_x"],4))}'
+            if 'alex oliveira' in str(row['Supervisor']).lower():
+                df_context_produtividade.at[index, 'context'] = f'produtividade de alex oliveira: {str(round(row["produtividade_x"],4)*100)}%'
+            
+            
             if 'basilio' in str(row['Supervisor']).lower():
                 df_context_produtividade.at[index, 'context'] = f'produtividade de basilio: {str(round(row["produtividade_x"],4))}'
                
@@ -141,71 +145,91 @@ class Oracle:
         series.to_json(f'{path_chat_bot}//contextos//contexto_sa_endereco.json', indent=4)
 
     
-    def update_garantia(self):
+    def update_garantia_context(self):
 
         path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_reparo_garantia.xlsx')
         path_chat_bot    = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'python', 'oracle')
+        all_contexts = []
         
-        
-        columns_df = ['Supervisor', 'den','num','mes','uf']
+        columns_df = ['Supervisor', 'den','num','mes','uf','dat_fechamento']
         df = pd.read_excel(path_df_context_produtividade,usecols=columns_df,dtype=str)
-        df = df[df['mes']=='5']
+        df['ano'] = pd.to_datetime(df['dat_fechamento']).dt.year
         df['uf'] = df['uf'].str.lower()
         df = df[df['uf']=='pr']
-        print(df.columns.to_list())
-        df[columns_df[0]] = df[columns_df[0]].astype(str).str.lower()
-        df['num'] = df['num'].astype(int)
-        df['den'] = df['den'].astype(int)
-
+        df = df[df['ano']==2025]
         
-       
-        df = df.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
-        #df = df.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
-        df['produtividade'] = df['num']/df['den']
-        df.to_excel(f'{path_chat_bot}//context_garantia_apos_produtividade.xlsx',index=False)
-        df = df[['Supervisor','produtividade']].copy()
-        #df = df.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
-        df.to_excel(f'{path_chat_bot}//context_garantia.xlsx',index=False)
-        df['context'] = ''
+        for month in df['mes'].unique():
         
+        #df = df[df['mes']=='5']
+            print(df.columns.to_list())
+            df_month = df[df['mes'] == month].copy()
+            
+            df_month['Supervisor'] = df_month['Supervisor'].astype(str).str.lower()
+            df_month['num'] = df_month['num'].astype(int)
+            df_month['den'] = df_month['den'].astype(int)
 
-        #df = df['context'].apply(lambda x: )
-        for index,row in df.iterrows():
-            if 'basilio' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'garantia de basilio: {str(round(row["produtividade"],4)*100)}%'
-               
-            if 'heider' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'garantia de heider: {str(round(row["produtividade"],4)*100)}%'
-               
-            if 'elisson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'garantia de elisson: {str(round(row["produtividade"],4)*100)}%'
+            
+        
+            df_month = df_month.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
+            #df_month = df_month.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
+            df_month['produtividade'] = df_month['num']/df_month['den']
+            df_month.to_excel(f'{path_chat_bot}//context_garantia_apos_produtividade.xlsx',index=False)
+            df_month = df_month[['Supervisor','produtividade']].copy()
+            #df_month = df_month.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
+            df_month.to_excel(f'{path_chat_bot}//context_garantia.xlsx',index=False)
+            df_month['context'] = ''
+            
+
+            #df_month = df_month['context'].apply(lambda x: )
+            for index,row in df_month.iterrows():
+                if 'alex oliveira' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'garantia de alex oliveira no mes {month}: {str(round(row["produtividade"],4)*100)}%'
                 
-            if 'clemilson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'garantia de clemilson: {str(round(row["produtividade"],4)*100)}%'
-               
-            if 'eduardo' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'garantia de eduardo: {str(round(row["produtividade"],4)*100)}%'
-               
-            if 'tony' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'garantia de tony: {str(round(row["produtividade"],4)*100)}%'
+                if 'basilio' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'garantia de basilio no mes {month}: {str(round(row["produtividade"],4)*100)}%'
+                
+                if 'heider' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'garantia de heider no mes {month}: {str(round(row["produtividade"],4)*100)}%'
+                
+                if 'elisson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'garantia de elisson no mes {month}: {str(round(row["produtividade"],4)*100)}%'
+                    
+                if 'clemilson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'garantia de clemilson no mes {month}: {str(round(row["produtividade"],4)*100)}%'
+                
+                if 'eduardo' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'garantia de eduardo no mes {month}: {str(round(row["produtividade"],4)*100)}%'
+                
+                if 'tony' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'garantia de tony no mes {month}: {str(round(row["produtividade"],4)*100)}%'
 
-        df = df[['context']].copy()
-        df[['key','value']] = df['context'].str.split(':',expand=True)
-        df['key'] = df['key'].str.strip()
-        df['value'] = df['value'].str.strip()
-        df.to_excel(f'{path_chat_bot}//context_garantia.xlsx',index=False)
-        series = pd.Series(df['value'].values, index=df['key'])
+        
+        
+        
+            df_month = df_month[['context']].copy()
+            df_month[['key','value']] = df_month['context'].str.split(':',expand=True)
+            
+            df_month['key'] = df_month['key'].str.strip()
+            df_month['value'] = df_month['value'].str.strip()
+            #df_month.to_excel(f'{path_chat_bot}//contexto_garantia.xlsx',index=False)
+            all_contexts.append(df_month)
+          
+        dfs = pd.concat(all_contexts,ignore_index=True)
+        dfs = dfs.drop_duplicates(subset='key') 
+
+        series = pd.Series(dfs['value'].values, index=dfs['key'])
         series.to_json(f'{path_chat_bot}//contextos//contexto_garantia.json', indent=4)
-       
+        
     
-    def update_repetido(self):
+    def update_repetido_context(self):
+        all_contexts = []
         path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_reparo_repetido.xlsx')
         path_chat_bot    = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'python', 'oracle')
         
         
-        columns_df = ['Supervisor', 'den','num','mes','uf']
+        columns_df = ['Supervisor', 'den','num','mes','uf','dat_abertura']
         df = pd.read_excel(path_df_context_produtividade,usecols=columns_df,dtype=str)
-        df = df[df['mes']=='5']
+        #df = df[df['mes']=='5']
         df['uf'] = df['uf'].str.lower()
         df = df[df['uf']=='pr']
         print(df.columns.to_list())
@@ -213,325 +237,361 @@ class Oracle:
         df['num'] = df['num'].astype(int)
         df['den'] = df['den'].astype(int)
 
+        df['ano'] = pd.to_datetime(df['dat_abertura']).dt.year
+        df['uf'] = df['uf'].str.lower()
+        df = df[df['uf']=='pr']
+        df = df[df['ano']==2025]
         
-       
-        df = df.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
-        #df = df.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
-        df['resultado'] = df['num']/df['den']
-        df.to_excel(f'{path_chat_bot}//context_repetido_apos_resultado.xlsx',index=False)
-        df = df[['Supervisor','resultado']].copy()
-        #df = df.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
-        df.to_excel(f'{path_chat_bot}//context_repetido.xlsx',index=False)
-        df['context'] = ''
-        
+        for month in df['mes'].unique():
+            df_month = df[df['mes'] == month].copy()
+            df_month = df_month.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
+            #df_month = df_month.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
+            df_month['resultado'] = df_month['num']/df_month['den']
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido_apos_resultado.xlsx',index=False)
+            df_month = df_month[['Supervisor','resultado']].copy()
+            #df_month = df_month.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido.xlsx',index=False)
+            df_month['context'] = ''
+            
 
-        #df = df['context'].apply(lambda x: )
-        for index,row in df.iterrows():
-            if 'basilio' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'repetido de basilio: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'heider' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'repetido de heider: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'elisson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'repetido de elisson: {str(round(row["resultado"],4)*100)}%'
+            #df_month = df_month['context'].apply(lambda x: )
+            for index,row in df_month.iterrows():
+
+                if 'alex oliveira' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'repetido de alex oliveira no mes {month}: {str(round(row["resultado"],4)*100)}%'
+
+                if 'basilio' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'repetido de basilio no mes {month}: {str(round(row["resultado"],4)*100)}%'
                 
-            if 'clemilson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'repetido de clemilson: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'eduardo' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'repetido de eduardo: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'tony' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'repetido de tony: {str(round(row["resultado"],4)*100)}%'
+                if 'heider' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'repetido de heider no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'elisson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'repetido de elisson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                    
+                if 'clemilson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'repetido de clemilson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'eduardo' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'repetido de eduardo no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'tony' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'repetido de tony no mes {month}: {str(round(row["resultado"],4)*100)}%'
 
-        df = df[['context']].copy()
-        df[['key','value']] = df['context'].str.split(':',expand=True)
-        df['key'] = df['key'].str.strip()
-        df['value'] = df['value'].str.strip()
-        df.to_excel(f'{path_chat_bot}//context_repetido.xlsx',index=False)
-        series = pd.Series(df['value'].values, index=df['key'])
+            df_month = df_month[['context']].copy()
+            df_month[['key','value']] = df_month['context'].str.split(':',expand=True)
+            df_month['key'] = df_month['key'].str.strip()
+            df_month['value'] = df_month['value'].str.strip()
+            df_month.to_excel(f'{path_chat_bot}//contexto_repetido.xlsx',index=False)
+            all_contexts.append(df_month)
+
+        
+        dfs = pd.concat(all_contexts,ignore_index=True)
+        dfs = dfs.drop_duplicates(subset='key') 
+
+        series = pd.Series(dfs['value'].values, index=dfs['key'])
         series.to_json(f'{path_chat_bot}//contextos//contexto_repetida.json', indent=4)
 
-    
-    def update_cumprimento_inst(self):
+       
+    def update_cumprimento_inst_context(self):
+        all_contexts = []
+        #path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_reparo_repetido.xlsx')
         path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_cumprimento_agendamento.xlsx')
         path_chat_bot    = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'python', 'oracle')
         
-        
-        columns_df = ['Supervisor', 'den','cumprimento_agenda','mes','uf']
+        columns_df = ['Supervisor', 'den','cumprimento_agenda','mes','uf','fim_agendamento']
+        #columns_df = ['Supervisor', 'den','num','mes','uf','dat_abertura']
         df = pd.read_excel(path_df_context_produtividade,usecols=columns_df,dtype=str)
-        df = df[df['mes']=='5']
+        #df = df[df['mes']=='5']
         df['uf'] = df['uf'].str.lower()
         df = df[df['uf']=='pr']
         print(df.columns.to_list())
         df[columns_df[0]] = df[columns_df[0]].astype(str).str.lower()
         df['num'] = df['cumprimento_agenda'].astype(int)
+        #df['num'] = df['num'].astype(int)
         df['den'] = df['den'].astype(int)
 
+        df['ano'] = pd.to_datetime(df['fim_agendamento']).dt.year
+        df['uf'] = df['uf'].str.lower()
+        df = df[df['uf']=='pr']
+        df = df[df['ano']==2025]
         
-       
-        df = df.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
-        #df = df.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
-        df['resultado'] = df['num']/df['den']
-        df.to_excel(f'{path_chat_bot}//context_cum_inst_apos_resultado.xlsx',index=False)
-        df = df[['Supervisor','resultado']].copy()
-        #df = df.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
-        df.to_excel(f'{path_chat_bot}//context_cump_inst.xlsx',index=False)
-        df['context'] = ''
-        
+        for month in df['mes'].unique():
+            df_month = df[df['mes'] == month].copy()
+            df_month = df_month.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
+            #df_month = df_month.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
+            df_month['resultado'] = df_month['num']/df_month['den']
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido_apos_resultado.xlsx',index=False)
+            df_month = df_month[['Supervisor','resultado']].copy()
+            #df_month = df_month.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido.xlsx',index=False)
+            df_month['context'] = ''
+            
 
-        #df = df['context'].apply(lambda x: )
-        for index,row in df.iterrows():
-            if 'basilio' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento instalacao de basilio: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'heider' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento instalacao de heider: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'elisson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento instalacao de elisson: {str(round(row["resultado"],4)*100)}%'
+            #df_month = df_month['context'].apply(lambda x: )
+            for index,row in df_month.iterrows():
+
+                if 'alex oliveira' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento instalacao de alex oliveira no mes {month}: {str(round(row["resultado"],4)*100)}%'
+
+                if 'basilio' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento instalacao de basilio no mes {month}: {str(round(row["resultado"],4)*100)}%'
                 
-            if 'clemilson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento instalacao de clemilson: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'eduardo' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento instalacao de eduardo: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'tony' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento instalacao de tony: {str(round(row["resultado"],4)*100)}%'
+                if 'heider' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento instalacao de heider no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'elisson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento instalacao de elisson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                    
+                if 'clemilson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento instalacao de clemilson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'eduardo' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento instalacao de eduardo no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'tony' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento instalacao de tony no mes {month}: {str(round(row["resultado"],4)*100)}%'
 
-        df = df[['context']].copy()
-        df[['key','value']] = df['context'].str.split(':',expand=True)
-        df['key'] = df['key'].str.strip()
-        df['value'] = df['value'].str.strip()
-        df.to_excel(f'{path_chat_bot}//context_repetido.xlsx',index=False)
-        series = pd.Series(df['value'].values, index=df['key'])
+            df_month = df_month[['context']].copy()
+            df_month[['key','value']] = df_month['context'].str.split(':',expand=True)
+            df_month['key'] = df_month['key'].str.strip()
+            df_month['value'] = df_month['value'].str.strip()
+            df_month.to_excel(f'{path_chat_bot}//contexto_cumprimento_agendamento_instalacao.xlsx',index=False)
+            all_contexts.append(df_month)
+
+        
+        dfs = pd.concat(all_contexts,ignore_index=True)
+        dfs = dfs.drop_duplicates(subset='key') 
+
+        series = pd.Series(dfs['value'].values, index=dfs['key'])
         series.to_json(f'{path_chat_bot}//contextos//contexto_cumprimento_agendamento_instalacao.json', indent=4)
 
-     
-    def update_cumprimento_rep(self):
+        
+    def update_cumprimento_rep_context(self):
+        all_contexts = []
+        #path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_reparo_repetido.xlsx')
         path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_cumprimento_agendamento_reparo.xlsx')
         path_chat_bot    = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'python', 'oracle')
         
-        
-        columns_df = ['Supervisor', 'den','cumprimento_agenda','mes','uf']
+        columns_df = ['Supervisor', 'den','cumprimento_agenda','mes','uf','fim_agendamento']
+        #columns_df = ['Supervisor', 'den','num','mes','uf','dat_abertura']
         df = pd.read_excel(path_df_context_produtividade,usecols=columns_df,dtype=str)
-        df = df[df['mes']=='5']
+        #df = df[df['mes']=='5']
         df['uf'] = df['uf'].str.lower()
         df = df[df['uf']=='pr']
         print(df.columns.to_list())
         df[columns_df[0]] = df[columns_df[0]].astype(str).str.lower()
         df['num'] = df['cumprimento_agenda'].astype(int)
+        #df['num'] = df['num'].astype(int)
         df['den'] = df['den'].astype(int)
 
+        df['ano'] = pd.to_datetime(df['fim_agendamento']).dt.year
+        df['uf'] = df['uf'].str.lower()
+        df = df[df['uf']=='pr']
+        df = df[df['ano']==2025]
         
-       
-        df = df.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
-        #df = df.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
-        df['resultado'] = df['num']/df['den']
-        df.to_excel(f'{path_chat_bot}//context_cum_rep_apos_resultado.xlsx',index=False)
-        df = df[['Supervisor','resultado']].copy()
-        #df = df.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
-        df.to_excel(f'{path_chat_bot}//context_cump_rep.xlsx',index=False)
-        df['context'] = ''
-        
+        for month in df['mes'].unique():
+            df_month = df[df['mes'] == month].copy()
+            df_month = df_month.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
+            #df_month = df_month.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
+            df_month['resultado'] = df_month['num']/df_month['den']
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido_apos_resultado.xlsx',index=False)
+            df_month = df_month[['Supervisor','resultado']].copy()
+            #df_month = df_month.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido.xlsx',index=False)
+            df_month['context'] = ''
+            
 
-        #df = df['context'].apply(lambda x: )
-        for index,row in df.iterrows():
-            if 'basilio' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento reparo de basilio: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'heider' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento reparo de heider: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'elisson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento reparo de elisson: {str(round(row["resultado"],4)*100)}%'
+            #df_month = df_month['context'].apply(lambda x: )
+            for index,row in df_month.iterrows():
+
+                if 'alex oliveira' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento reparo de alex oliveira no mes {month}: {str(round(row["resultado"],4)*100)}%'
+
+                if 'basilio' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento reparo de basilio no mes {month}: {str(round(row["resultado"],4)*100)}%'
                 
-            if 'clemilson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento reparo de clemilson: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'eduardo' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento reparo de eduardo: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'tony' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'cumrimento agendamento reparo de tony: {str(round(row["resultado"],4)*100)}%'
+                if 'heider' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento reparo de heider no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'elisson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento reparo de elisson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                    
+                if 'clemilson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento reparo de clemilson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'eduardo' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento reparo de eduardo no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'tony' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'cumprimento agendamento reparo de tony no mes {month}: {str(round(row["resultado"],4)*100)}%'
 
-        df = df[['context']].copy()
-        df[['key','value']] = df['context'].str.split(':',expand=True)
-        df['key'] = df['key'].str.strip()
-        df['value'] = df['value'].str.strip()
-        df.to_excel(f'{path_chat_bot}//context_cum_ag_rep.xlsx',index=False)
-        series = pd.Series(df['value'].values, index=df['key'])
+            df_month = df_month[['context']].copy()
+            df_month[['key','value']] = df_month['context'].str.split(':',expand=True)
+            df_month['key'] = df_month['key'].str.strip()
+            df_month['value'] = df_month['value'].str.strip()
+            df_month.to_excel(f'{path_chat_bot}//contexto_cumprimento_agendamento_reparo.xlsx',index=False)
+            all_contexts.append(df_month)
+
+        
+        dfs = pd.concat(all_contexts,ignore_index=True)
+        dfs = dfs.drop_duplicates(subset='key') 
+
+        series = pd.Series(dfs['value'].values, index=dfs['key'])
         series.to_json(f'{path_chat_bot}//contextos//contexto_cumprimento_agendamento_reparo.json', indent=4)
-
-     
-    def update_eficacia_rep(self):
+  
+    
+        
+    def update_eficacia_rep_context(self):
+        all_contexts = []
+        #path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_reparo_repetido.xlsx')
         path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_eficacia_reparo.xlsx')
         path_chat_bot    = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'python', 'oracle')
         
-        
-        columns_df = ['Supervisor', 'den','num','mes','UF']
+        columns_df = ['Supervisor', 'den','num','mes','UF','Fim Execução']
+        #columns_df = ['Supervisor', 'den','num','mes','uf','dat_abertura']
         df = pd.read_excel(path_df_context_produtividade,usecols=columns_df,dtype=str)
-        df = df[df['mes']=='5']
-        df['UF'] = df['UF'].str.lower()
-        df = df[df['UF']=='pr']
+        #df = df[df['mes']=='5']
+        df['uf'] = df['UF'].str.lower()
+        df = df[df['uf']=='pr']
         print(df.columns.to_list())
         df[columns_df[0]] = df[columns_df[0]].astype(str).str.lower()
         df['num'] = df['num'].astype(int)
+        #df['num'] = df['num'].astype(int)
         df['den'] = df['den'].astype(int)
 
+        df['ano'] = pd.to_datetime(df['Fim Execução']).dt.year
+        df['uf'] = df['uf'].str.lower()
+        df = df[df['uf']=='pr']
+        df = df[df['ano']==2025]
         
-       
-        df = df.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
-        #df = df.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
-        df['resultado'] = df['num']/df['den']
-        df.to_excel(f'{path_chat_bot}//context_ef_rep_apos_resultado.xlsx',index=False)
-        df = df[['Supervisor','resultado']].copy()
-        #df = df.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
-        df.to_excel(f'{path_chat_bot}//context_ef_rep.xlsx',index=False)
-        df['context'] = ''
-        
+        for month in df['mes'].unique():
+            df_month = df[df['mes'] == month].copy()
+            df_month = df_month.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
+            #df_month = df_month.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
+            df_month['resultado'] = df_month['num']/df_month['den']
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido_apos_resultado.xlsx',index=False)
+            df_month = df_month[['Supervisor','resultado']].copy()
+            #df_month = df_month.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido.xlsx',index=False)
+            df_month['context'] = ''
+            
 
-        #df = df['context'].apply(lambda x: )
-        for index,row in df.iterrows():
-            if 'basilio' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia reparo de basilio: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'heider' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia reparo de heider: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'elisson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia reparo de elisson: {str(round(row["resultado"],4)*100)}%'
+            #df_month = df_month['context'].apply(lambda x: )
+            for index,row in df_month.iterrows():
+
+                if 'alex oliveira' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia reparo de alex oliveira no mes {month}: {str(round(row["resultado"],4)*100)}%'
+
+                if 'basilio' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia reparo de basilio no mes {month}: {str(round(row["resultado"],4)*100)}%'
                 
-            if 'clemilson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia reparo de clemilson: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'eduardo' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia reparo de eduardo: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'tony' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia reparo de tony: {str(round(row["resultado"],4)*100)}%'
+                if 'heider' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia reparo de heider no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'elisson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia reparo de elisson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                    
+                if 'clemilson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia reparo de clemilson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'eduardo' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia reparo de eduardo no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'tony' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia reparo de tony no mes {month}: {str(round(row["resultado"],4)*100)}%'
 
-        df = df[['context']].copy()
-        df[['key','value']] = df['context'].str.split(':',expand=True)
-        df['key'] = df['key'].str.strip()
-        df['value'] = df['value'].str.strip()
-        df.to_excel(f'{path_chat_bot}//context_ef_rep.xlsx',index=False)
-        series = pd.Series(df['value'].values, index=df['key'])
+            df_month = df_month[['context']].copy()
+            df_month[['key','value']] = df_month['context'].str.split(':',expand=True)
+            df_month['key'] = df_month['key'].str.strip()
+            df_month['value'] = df_month['value'].str.strip()
+            df_month.to_excel(f'{path_chat_bot}//contexto_eficacia_reparo.xlsx',index=False)
+            all_contexts.append(df_month)
+
+        
+        dfs = pd.concat(all_contexts,ignore_index=True)
+        dfs = dfs.drop_duplicates(subset='key') 
+
+        series = pd.Series(dfs['value'].values, index=dfs['key'])
         series.to_json(f'{path_chat_bot}//contextos//contexto_eficacia_reparo.json', indent=4)
+  
 
       
-    def update_eficacia_inst(self):
+    def update_eficacia_inst_context(self):
+        all_contexts = []
+        #path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_reparo_repetido.xlsx')
         path_df_context_produtividade = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'thiago', 'Handover - TH', 'Handover - TH', 'robos', 'resultado_fsl.xlsx')
         path_chat_bot    = os.path.join('C:\\', 'Users', '55419', 'Documents', 'icomon', 'spot', 'python', 'oracle')
         
-        
-        columns_df = ['Supervisor', 'den','num','mes','UF']
+        columns_df = ['Supervisor', 'den','num','mes','UF','Fim Execução']
+        #columns_df = ['Supervisor', 'den','num','mes','uf','dat_abertura']
         df = pd.read_excel(path_df_context_produtividade,usecols=columns_df,dtype=str)
-        df = df[df['mes']=='5']
-        df['UF'] = df['UF'].str.lower()
-        df = df[df['UF']=='pr']
+        #df = df[df['mes']=='5']
+        df['uf'] = df['UF'].str.lower()
+        df = df[df['uf']=='pr']
         print(df.columns.to_list())
         df[columns_df[0]] = df[columns_df[0]].astype(str).str.lower()
         df['num'] = df['num'].astype(int)
+        #df['num'] = df['num'].astype(int)
         df['den'] = df['den'].astype(int)
 
+        df['ano'] = pd.to_datetime(df['Fim Execução']).dt.year
+        df['uf'] = df['uf'].str.lower()
+        df = df[df['uf']=='pr']
+        df = df[df['ano']==2025]
         
-       
-        df = df.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
-        #df = df.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
-        df['resultado'] = df['num']/df['den']
-        df.to_excel(f'{path_chat_bot}//context_ef_inst_apos_resultado.xlsx',index=False)
-        df = df[['Supervisor','resultado']].copy()
-        #df = df.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
-        df.to_excel(f'{path_chat_bot}//context_ef_inst.xlsx',index=False)
-        df['context'] = ''
-        
+        for month in df['mes'].unique():
+            df_month = df[df['mes'] == month].copy()
+            df_month = df_month.groupby(['Supervisor'],as_index=False)[['num','den']].sum()
+            #df_month = df_month.groupby(['Nome','tecnico'],as_index=False)[['num','den']].sum()
+            df_month['resultado'] = df_month['num']/df_month['den']
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido_apos_resultado.xlsx',index=False)
+            df_month = df_month[['Supervisor','resultado']].copy()
+            #df_month = df_month.sort_values(by='produtividade', ascending=False).reset_index(drop=True)
+            #df_month.to_excel(f'{path_chat_bot}//context_repetido.xlsx',index=False)
+            df_month['context'] = ''
+            
 
-        #df = df['context'].apply(lambda x: )
-        for index,row in df.iterrows():
-            if 'basilio' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia instalacao de basilio: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'heider' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia instalacao de heider: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'elisson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia instalacao de elisson: {str(round(row["resultado"],4)*100)}%'
+            #df_month = df_month['context'].apply(lambda x: )
+            for index,row in df_month.iterrows():
+
+                if 'alex oliveira' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia instalacao de alex oliveira no mes {month}: {str(round(row["resultado"],4)*100)}%'
+
+                if 'basilio' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia instalacao de basilio no mes {month}: {str(round(row["resultado"],4)*100)}%'
                 
-            if 'clemilson' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia instalacao de clemilson: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'eduardo' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia instalacao de eduardo: {str(round(row["resultado"],4)*100)}%'
-               
-            if 'tony' in str(row['Supervisor']).lower():
-                df.at[index, 'context'] = f'eficacia instalacao de tony: {str(round(row["resultado"],4)*100)}%'
+                if 'heider' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia instalacao de heider no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'elisson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia instalacao de elisson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                    
+                if 'clemilson' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia instalacao de clemilson no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'eduardo' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia instalacao de eduardo no mes {month}: {str(round(row["resultado"],4)*100)}%'
+                
+                if 'tony' in str(row['Supervisor']).lower():
+                    df_month.at[index, 'context'] = f'eficacia instalacao de tony no mes {month}: {str(round(row["resultado"],4)*100)}%'
 
-        df = df[['context']].copy()
-        df[['key','value']] = df['context'].str.split(':',expand=True)
-        df['key'] = df['key'].str.strip()
-        df['value'] = df['value'].str.strip()
-        df.to_excel(f'{path_chat_bot}//context_ef_inst.xlsx',index=False)
-        series = pd.Series(df['value'].values, index=df['key'])
-        series.to_json(f'{path_chat_bot}//contextos//contexto_eficacia_instalacao.json', indent=4)
-            
-     
-    def update_gerenciais_context(self):
-
-       
-       # 1. Abrir o JSON existente
-        with open('contexto.json', 'r') as f:
-            contexto = json.load(f)
-            print(type(contexto))
-            print(contexto)
-
-        # 2. Adicionar novos valores
-        contexto['a produtividade de Jose'] = '5,215'
-        contexto['a produtividade de Maria'] = '6,123'
-
-        # 3. Salvar de volta no mesmo arquivo
-        with open('contexto.json', 'w') as f:
-            json.dump(contexto, f, indent=4)
-            
-        with open('contexto.json', 'r') as f:
-            contexto = json.load(f)
-            print(type(contexto))
-            print(contexto)
-
-        pass
-    
-    
-    def load_model_tinyllama(self,user_input):
-        #meta-llama/Meta-Llama-3-8B-Instruct
-        #
-        contexto = self.contexto()
-        resumo = contexto
-        amostra = contexto
-        prompt = user_input
-        prompt = f"""
-        {user_input}:
-
-        Resumo estatístico:
-        {resumo}
-
-        Amostra de dados:
-        {amostra}
-
-        Gere insights sobre tendências, possíveis problemas e recomendações.
-        """
-        #C:\Users\55419\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
-        comando = ['C:\\Users\\55419\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\ollama', 'run', 'tinyllama']
-        processo = subprocess.Popen(comando, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        saida, erro = processo.communicate(input=prompt)
+            df_month = df_month[['context']].copy()
+            df_month[['key','value']] = df_month['context'].str.split(':',expand=True)
+            df_month['key'] = df_month['key'].str.strip()
+            df_month['value'] = df_month['value'].str.strip()
+            df_month.to_excel(f'{path_chat_bot}//contexto_eficacia_instalacao.xlsx',index=False)
+            all_contexts.append(df_month)
 
         
-        #print("\\n### Insights Gerados ###\n")
-        #print(saida)
-        return saida
+        dfs = pd.concat(all_contexts,ignore_index=True)
+        dfs = dfs.drop_duplicates(subset='key') 
 
-    
+        series = pd.Series(dfs['value'].values, index=dfs['key'])
+        series.to_json(f'{path_chat_bot}//contextos//contexto_eficacia_instalacao.json', indent=4)
+  
+
+   
     def load_model_ollama_2(self):
         from ollama import chat
         from ollama import ChatResponse
@@ -548,8 +608,8 @@ class Oracle:
 
     
     
-    def load_model_llama(self,user_input):
-        contexto = self.contexto()
+    def load_model_llama_(self,user_input):
+        contexto = self.contexto(user_input)
         # Install transformers from source - only needed for versions <= v4.34
         # pip install git+https://github.com/huggingface/transformers.git
         # pip install accelerate
@@ -557,17 +617,30 @@ class Oracle:
         #TinyLlama/TinyLlama-1.1B-Chat-v0.6
         import torch
         from transformers import pipeline
+        #path_model = os.path.join('D://','huggingface','hub','meta-llamaMeta-Llama-3-8B-Instruct')
+        path_model = 'D:\\models\\huggingface\\hub\\meta-llamaMeta-Llama-3-8B-Instruct'
+        pipe = pipeline(
+            "text-generation",
+             model=path_model,
+             model_kwargs={"torch_dtype": torch.bfloat16},
+             #torch_dtype=torch.bfloat16,
+             device_map="auto",
+             disk_offload ='./offload'
 
-        pipe = pipeline("text-generation", model="meta-llama/Meta-Llama-3-8B-Instruct", torch_dtype=torch.bfloat16, device_map="auto")
+             
+             )
+        
         print(f' o modelo tinnyllama vai processar o contexto: {contexto}')
         # We use the tokenizer's chat template to format each message - see https://huggingface.co/docs/transformers/main/en/chat_templating
+       
+        #"""  
         messages = [
-            {
-                "role": "system",
-                "content": f"Você é um analista de dados especialista em produtividade. Considere o seguinte contexto:\n{contexto}",
-            },
-            {"role": "user", "content": f"{user_input}"},
-        ]
+                {
+                    "role": "system",
+                    "content": f"Você é um analista de dados especialista em produtividade. Considere o seguinte contexto:\n{contexto}",
+                },
+                {"role": "user", "content": f"{user_input}"},
+            ]
         prompt = pipe.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
         #outputs = pipe(prompt, max_new_tokens=16, do_sample=True, temperature=0.7, top_k=50, top_p=0.95)
         outputs = pipe(prompt, max_new_tokens=16, do_sample=False)
@@ -578,7 +651,61 @@ class Oracle:
         #print(generated_text)
         return generated_text
         
+        #"""
+       
+    
+    
+    def load_model_llama(self,user_input):
+        contexto = self.contexto(user_input)
+        from transformers import AutoTokenizer, AutoModelForCausalLM
+        import torch
 
+        #model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+        model_id = 'D:\\models\\huggingface\\hub\\meta-llamaMeta-Llama-3-8B-Instruct'
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            torch_dtype=torch.bfloat16,
+            device_map="auto",
+            #disk_offload ='./offload'
+            
+        )
+
+        #"""  
+        messages = [
+            {"role": "system", "content": "You are a pirate chatbot who always responds in pirate speak!"},
+            {"role": "user", "content": "Who are you?"},
+        ]
+
+        input_ids = tokenizer.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            return_tensors="pt"
+        ).to(model.device)
+
+        terminators = [
+            tokenizer.eos_token_id,
+            tokenizer.convert_tokens_to_ids("<|eot_id|>")
+        ]
+
+        outputs = model.generate(
+            input_ids,
+            max_new_tokens=256,
+            eos_token_id=terminators,
+            do_sample=True,
+            temperature=0.6,
+            top_p=0.9,
+        )
+        response = outputs[0][input_ids.shape[-1]:]
+        print(tokenizer.decode(response, skip_special_tokens=True))
+        
+        
+        #"""
+        
+        
+ 
+        
+      
     def load_model_roberta_large(self,user_input,context):
         #contexto = self.contexto()
         print(context)
@@ -650,27 +777,37 @@ class Oracle:
                 st.markdown(f"**🤖 {remetente}:** {texto}")
         
         
-       
+    def ngrok(self):
+        #ngrok authtoken 2xoZknc7DhV8ph0YZBpEHW8QLxZ_51696hKmBe1AWacWyBj3u
+        from pyngrok import ngrok
+        public_url = ngrok.connect(8501)
+        print(public_url)   
 
 def main():
    
     
    
     execute = Oracle()
-    #set_execute = input('Digite 1 para executar streamlit.Digite 2 para executar modelo roberta large.Digite 3 para executar modelo roberta base,digite 4 para carregar o modelo longformer, digite 4 para verificar contexto: ')
-    #execute.update_produtividade_context()
-    #execute.update_garantia()
-    #execute.update_repetido()
-    #execute.update_cumprimento_inst()
-    #execute.update_cumprimento_rep()
-    #execute.update_eficacia_rep()
-    execute.update_eficacia_inst()
-    #execute.streamlit()
-    #execute.load_model_tinyllama(user_input='qual a produtividade do elisson?')
-    #execute.load_model_llama(user_input='qual o resultado do heider?')
+    set_execute = input('Digite 1 para executar streamlit.Digite 2 para atualizar contextos, 3 testar modelo llama, 4 gerar link ngrok: ')
+    if set_execute == '1':
+        execute.streamlit()
     
 
-    #execute.load_model_mistral(user_input='Quais foram os presidentes dos Estadus Unidos?')
+    if set_execute == '2':
+        execute.update_produtividade_context()
+        execute.update_garantia_context()
+        execute.update_repetido_context()
+        execute.update_cumprimento_inst_context()
+        execute.update_cumprimento_rep_context()
+        execute.update_eficacia_rep_context()
+        execute.update_eficacia_inst_context()
+    
+    if set_execute == '3':
+        execute.load_model_llama('qual o resultado do indicador garantia do elisson?')
+    if set_execute == '4':
+        execute.ngrok()
+    
+   
 
 if __name__ == '__main__':
     main()
